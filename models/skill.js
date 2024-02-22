@@ -17,5 +17,9 @@ function getAll() {
 }
 
 function getOne(id) {
-    return skills.find(skill => skills.skill === id);
-}
+    // URL params are strings - convert to a number
+    //breed = parseInt(id);
+    // The Array.prototype.find iterator method is
+    // ideal for finding objects within an array
+    return skills.find(s => s.skill === id);
+  }
