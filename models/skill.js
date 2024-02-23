@@ -9,7 +9,9 @@ const skills = [
 
 module.exports = {
     getAll,
-    getOne
+    getOne,
+    create,
+    deleteOne
 };
 
 function getAll() {
@@ -23,3 +25,14 @@ function getOne(id) {
     // ideal for finding objects within an array
     return skills.find(s => s.skill === id);
   }
+
+function create(skill) {
+    skill.id = Date.now() % 1000000;
+    //skill.expYears = 1;
+    skills.push(skill);
+}
+function deleteOne(id) {
+    id = parseInt(id);
+    const idx = skills.findIndex(s => s.id === id);
+    skills.splice(idx, 1);
+}

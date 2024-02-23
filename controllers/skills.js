@@ -1,8 +1,12 @@
+const { TopologyDescription } = require("mongodb");
 const Skill = require("../models/skill");
 
 module.exports = {
     index,
-    show
+    show,
+    new: newSkill,
+    create,
+    delete: deleteSkill
 };
 
 function index(req, res) {
@@ -17,3 +21,17 @@ function show(req, res) {
     //console.log("arenita: " + Skill.getOne(req.params.id));
     //console.log(typeof req.params.id);
 }
+
+function newSkill(req, res) {
+    res.render("skills/new", {title: "New Todo"});
+}
+function create(req, res) {
+    console.log(req.body);
+    Skill.create(req.body);
+    res.redirect("/skills");
+  }
+  function deleteSkill(req, res) {
+    //console.log("arenita");
+    Skill.deleteOne(req.params.id);
+    res.redirect("/skills");
+  }
